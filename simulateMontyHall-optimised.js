@@ -14,13 +14,14 @@ function simulateMontyHall(trials) {
         let hostPick;
         do {
             hostPick = Math.floor(Math.random() * 3);
-        } while (hostPick === ballCup || hostPick === contestantPick);
+        } while (hostPick === ballCup || hostPick === contestantPick); // 
 
-        // Check if the contestant would have won by staying
+        // In this optimised version, we directly check if the contestant wins by staying or by switching, eliminating the need for additional logic.
+        // If the contestant's initial pick is the ballCup, they win by staying.
         if (contestantPick === ballCup) {
-            stayWins++;
+            stayWins++; // ++ adds 1 to the value of the variable
         } else {
-            // Check if the contestant would have won by switching
+            // Otherwise, they win by switching since the host's reveal guarantees that switching is the only option left with the ball.
             switchWins++;
         }
     }
