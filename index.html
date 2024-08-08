@@ -15,6 +15,7 @@
             background-color: #f0f0f0;
             border: 1px solid #ccc;
             white-space: pre-wrap;
+            min-height: 50px;
         }
         .button-container {
             margin-top: 10px;
@@ -47,15 +48,15 @@
 
     <div class="button-container">
         <input type="number" id="trials1" value="20000000" min="1">
-        <button onclick="runProgram1()">Run Program 1</button>
-        <a href="https://www.example.com" class="button-link" target="_blank">Visit Example</a>
+        <button onclick="runProgram1()">Run Original Program</button>
+        <a href="https://github.com/quantumified/Monty-Hall-Simulator/blob/main/simulateMontyHall-original.js" class="button-link" target="_blank">See Code</a>
     </div>
     <div id="output1" class="output"></div>
 
     <div class="button-container">
         <input type="number" id="trials2" value="20000000" min="1">
-        <button onclick="runProgram2()">Run Program 2</button>
-        <a href="https://www.example.com" class="button-link" target="_blank">Visit Example</a>
+        <button onclick="runProgram2()">Run Optimised Program</button>
+        <a href="https://github.com/quantumified/Monty-Hall-Simulator/blob/main/simulateMontyHall-optimised.js" class="button-link" target="_blank">See Code</a>
     </div>
     <div id="output2" class="output"></div>
 
@@ -99,12 +100,15 @@
         function runProgram1() {
             const output1 = document.getElementById('output1');
             const trials = parseInt(document.getElementById('trials1').value) || 20000000;
-            const startTime = performance.now(); // Start timing
-            const results = simulateMontyHall1(trials);
-            const endTime = performance.now(); // End timing
-            const executionTime = (endTime - startTime) / 1000; // Calculate execution time in seconds
+            output1.textContent = "Processing..."; // Show "Processing..." while the code runs
+            setTimeout(() => { // Wrap the processing in a setTimeout to allow the "Processing..." text to render
+                const startTime = performance.now(); // Start timing
+                const results = simulateMontyHall1(trials);
+                const endTime = performance.now(); // End timing
+                const executionTime = (endTime - startTime) / 1000; // Calculate execution time in seconds
 
-            output1.textContent = `Total trials: ${results.trials}\nWins by staying: ${results.stayWins}\nWins by switching: ${results.switchWins}\nWin rate by staying: ${(results.stayWins / results.trials) * 100}%\nWin rate by switching: ${(results.switchWins / results.trials) * 100}%\nExecution time: ${executionTime.toFixed(2)} seconds`;
+                output1.textContent = `Total trials: ${results.trials}\nWins by staying: ${results.stayWins}\nWins by switching: ${results.switchWins}\nWin rate by staying: ${(results.stayWins / results.trials) * 100}%\nWin rate by switching: ${(results.switchWins / results.trials) * 100}%\nExecution time: ${executionTime.toFixed(2)} seconds`;
+            }, 50); // A small delay to allow the "Processing..." message to update
         }
 
         function simulateMontyHall2(trials) {
@@ -136,12 +140,15 @@
         function runProgram2() {
             const output2 = document.getElementById('output2');
             const trials = parseInt(document.getElementById('trials2').value) || 20000000;
-            const startTime = performance.now(); // Start timing
-            const results = simulateMontyHall2(trials);
-            const endTime = performance.now(); // End timing
-            const executionTime = (endTime - startTime) / 1000; // Calculate execution time in seconds
+            output2.textContent = "Processing..."; // Show "Processing..." while the code runs
+            setTimeout(() => { // Wrap the processing in a setTimeout to allow the "Processing..." text to render
+                const startTime = performance.now(); // Start timing
+                const results = simulateMontyHall2(trials);
+                const endTime = performance.now(); // End timing
+                const executionTime = (endTime - startTime) / 1000; // Calculate execution time in seconds
 
-            output2.textContent = `Total trials: ${results.trials}\nWins by staying: ${results.stayWins}\nWins by switching: ${results.switchWins}\nWin rate by staying: ${(results.stayWins / results.trials) * 100}%\nWin rate by switching: ${(results.switchWins / results.trials) * 100}%\nExecution time: ${executionTime.toFixed(2)} seconds`;
+                output2.textContent = `Total trials: ${results.trials}\nWins by staying: ${results.stayWins}\nWins by switching: ${results.switchWins}\nWin rate by staying: ${(results.stayWins / results.trials) * 100}%\nWin rate by switching: ${(results.switchWins / results.trials) * 100}%\nExecution time: ${executionTime.toFixed(2)} seconds`;
+            }, 50); // A small delay to allow the "Processing..." message to update
         }
     </script>
 </body>
