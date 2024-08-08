@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Monty Hall Simulation</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        .output {
+            margin-top: 10px;
+            padding: 10px;
+            background-color: #f0f0f0;
+            border: 1px solid #ccc;
+            white-space: pre-wrap;
+        }
+        button {
+            margin-top: 10px;
+            padding: 10px 20px;
+            font-size: 16px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Monty Hall Simulation</h1>
+
+    <button onclick="runProgram1()">Run Program 1</button>
+    <div id="output1" class="output"></div>
+
+    <button onclick="runProgram2()">Run Program 2</button>
+    <div id="output2" class="output"></div>
+
+    <script>
+        function getRandomInt(max) {
+            return Math.floor(Math.random() * max);
+        }
+
+        function simulateMontyHall1(trials) {
+            let stayWins = 0;
+            let switchWins = 0;
+
+            for (let i = 0; i < trials; i++) {
+                const ballCup = getRandomInt(3);
+                const contestantPick = getRandomInt(3);
+                let hostPick;
+                do {
+                    hostPick = getRandomInt(3);
+                } while (hostPick === ballCup || hostPick === contestantPick);
+
+                const switchPick = [0, 1, 2].find(function(cup) {
+                    return cup !== contestantPick && cup !== hostPick;
+                });
+
+                if (contestantPick === ballCup) {
+                    stayWins++;
+                }
+
+                if (switchPick === ballCup) {
+                    switchWins++;
+                }
+            }
+
+            return {
+                trials: trials,
+                stayWins: stayWins,
+                switchWins: switchWins
+            };
+        }
+
+        function runProgram1() {
+            const output1 = document.getElementById('output1');
+            console.time('Execution time');
+            const results = simulateMontyHall1(20000000);
+            console.timeEnd('Execution time');
+
+            output1.textContent = `Total trials: ${results.trials}\nWins by staying: ${results.stayWins}\nWins by switching: ${results.switchWins}\nWin rate by staying: ${(results.stayWins / results.trials) * 100}%\nWin rate by switching: ${(results.switchWins / results.trials) * 100}%`;
+        }
+
+        function simulateMontyHall2(trials) {
+            let stayWins = 0;
+            let switchWins = 0;
+
+            for (let i = 0; i < trials; i++) {
+                const ballCup = Math.floor(Math.random() * 3);
+                const contestantPick = Math.floor(Math.random() * 3);
+                let hostPick;
+                do {
+                    hostPick = Math.floor(Math.random() * 3);
+                } while (hostPick === ballCup || hostPick === contestantPick);
+
+                if (contestantPick === ballCup) {
+                    stayWins++;
+                } else {
+                    switchWins++;
+                }
+            }
+
+            return {
+                trials: trials,
+                stayWins: stayWins,
+                switchWins: switchWins
+            };
+        }
+
+        function runProgram2() {
+            const output2 = document.getElementById('output2');
+            console.time('Execution time');
+            const results = simulateMontyHall2(20000000);
+            console.timeEnd('Execution time');
+
+            output2.textContent = `Total trials: ${results.trials}\nWins by staying: ${results.stayWins}\nWins by switching: ${results.switchWins}\nWin rate by staying: ${(results.stayWins / results.trials) * 100}%\nWin rate by switching: ${(results.switchWins / results.trials) * 100}%`;
+        }
+    </script>
+</body>
+</html>
