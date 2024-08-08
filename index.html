@@ -71,11 +71,12 @@
 
         function runProgram1() {
             const output1 = document.getElementById('output1');
-            console.time('Execution time');
+            const startTime = performance.now(); // Start timing
             const results = simulateMontyHall1(20000000);
-            console.timeEnd('Execution time');
+            const endTime = performance.now(); // End timing
+            const executionTime = (endTime - startTime) / 1000; // Calculate execution time in seconds
 
-            output1.textContent = `Total trials: ${results.trials}\nWins by staying: ${results.stayWins}\nWins by switching: ${results.switchWins}\nWin rate by staying: ${(results.stayWins / results.trials) * 100}%\nWin rate by switching: ${(results.switchWins / results.trials) * 100}%`;
+            output1.textContent = `Total trials: ${results.trials}\nWins by staying: ${results.stayWins}\nWins by switching: ${results.switchWins}\nWin rate by staying: ${(results.stayWins / results.trials) * 100}%\nWin rate by switching: ${(results.switchWins / results.trials) * 100}%\nExecution time: ${executionTime.toFixed(2)} seconds`;
         }
 
         function simulateMontyHall2(trials) {
@@ -106,11 +107,12 @@
 
         function runProgram2() {
             const output2 = document.getElementById('output2');
-            console.time('Execution time');
+            const startTime = performance.now(); // Start timing
             const results = simulateMontyHall2(20000000);
-            console.timeEnd('Execution time');
+            const endTime = performance.now(); // End timing
+            const executionTime = (endTime - startTime) / 1000; // Calculate execution time in seconds
 
-            output2.textContent = `Total trials: ${results.trials}\nWins by staying: ${results.stayWins}\nWins by switching: ${results.switchWins}\nWin rate by staying: ${(results.stayWins / results.trials) * 100}%\nWin rate by switching: ${(results.switchWins / results.trials) * 100}%`;
+            output2.textContent = `Total trials: ${results.trials}\nWins by staying: ${results.stayWins}\nWins by switching: ${results.switchWins}\nWin rate by staying: ${(results.stayWins / results.trials) * 100}%\nWin rate by switching: ${(results.switchWins / results.trials) * 100}%\nExecution time: ${executionTime.toFixed(2)} seconds`;
         }
     </script>
 </body>
