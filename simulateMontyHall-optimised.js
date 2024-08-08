@@ -14,7 +14,9 @@ function simulateMontyHall(trials) {
         let hostPick;
         do {
             hostPick = Math.floor(Math.random() * 3);
-        } while (hostPick === ballCup || hostPick === contestantPick); // 
+        } while (hostPick === ballCup || hostPick === contestantPick); // || means OR, = assigns a value to a variable, == checks if two things are equal, but it performs coercion (converts the operands to the same type before comparing).
+        // === also checks if two things are equal but does not perform coercion, meaning it compares both the value and the type. For example: 5 == '5' is true, because == converts the string '5' into the number 5 before comparing, but 5 === '5' is false/
+        // This is because, because === is strict and does not perform any type conversion, in this case, 5 is a number and '5' is a string, and since their types are different, they are not considered equal.
 
         // In this optimised version, we directly check if the contestant wins by staying or by switching, eliminating the need for additional logic.
         // If the contestant's initial pick is the ballCup, they win by staying.
