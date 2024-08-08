@@ -23,7 +23,7 @@ function simulateMontyHall(trials) {
     let hostPick; // Declares the variable hostPick
     do {
       hostPick = getRandomInt(3);
-    } while (hostPick === ballCup || hostPick === contestantPick); // || means OR, === means equal to
+    } while (hostPick === ballCup || hostPick === contestantPick); // || means OR, === means equal to (strictly)
 
     // Find the remaining cup (the one the contestant could switch to)
     const switchPick = [0, 1, 2].find(function(cup) {
